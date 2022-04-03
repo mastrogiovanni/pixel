@@ -241,7 +241,7 @@
     use:swipe={{
         timeframe: 300,
         minSwipeDistance: 100,
-        touchAction: "pan-right pan-y",
+        touchAction: "pan-right pan-left pan-top pan-bottom pan-y pan-x",
     }}
     on:swipe={handler}
     style="width: 100%; height: 100%"
