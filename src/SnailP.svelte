@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { swipe } from "svelte-gestures";
+    import {Howl, Howler} from 'howler';
 
     let canvas;
 
@@ -121,7 +122,9 @@
         quadratoY = 25;
         vx = 0; // Velocità iniziale del verme
         vy = velocita;
-        timerVelocita = setInterval(accelerazione, 5000); // Timer di aggiornamento velocita
+        timerUpdate = setInterval(update, 16);
+        timerVelocita = setInterval(accelerazione, 7000);
+        timerScore = setInterval(score, 1000);
         play = true; // Sei in gioco!
     }
 
@@ -131,6 +134,16 @@
         velocita = 0;
         play = false;
         clearInterval(timerVelocita);
+        clearInterval(timerUpdate);
+        clearInterval(timerScore);
+        var sound = new Howl({
+            src: ['/sound/bomb.mp3'],
+            loop: false,
+        });
+        sound.on('end', function(){
+            console.log('Finished!');
+            });
+        sound.play();
     }
 
     // Quando superi i bordi => hai perso
@@ -174,12 +187,10 @@
     }
 
     let timerVelocita;
+    let timerUpdate;
+    let timerScore;
 
     onMount(() => {
-        // draw();
-        setInterval(update, 16);
-        timerVelocita = setInterval(accelerazione, 7000);
-        setInterval(score, 1000);
         restart();
     });
 
