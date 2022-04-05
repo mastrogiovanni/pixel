@@ -71,7 +71,12 @@
         setInterval(ruotaEDisegna, 40)
     })
 
-    document.onkeypress = function (event) {
+    document.onkeyup = function (event) {
+        console.log("up")
+    }
+
+    document.onkeydown = function (event) {
+        console.log(event);
         let char = typeof event !== "undefined" ? event.keyCode : event.which;
         if (char === 97) {
             posX = posX + 20;
