@@ -1,4 +1,4 @@
-import App from './SnailP.svelte';
+import App from './Mattia.svelte';
 
 const app = new App({
 	target: document.body,
